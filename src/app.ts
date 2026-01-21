@@ -7,7 +7,7 @@ import cors  from "cors"
 const app = express();
 
 app.use(cors({
-    origin: process.env.APP_URL || "http://localhost:4000"
+    origin: process.env.APP_URL || "http://localhost:4000" || "http://localhost:4000"
 }))
 
 app.all('/api/auth/*splat', toNodeHandler(auth));

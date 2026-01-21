@@ -73,7 +73,7 @@ model User {
 
   role   String? @default("USER")
   phone  String?
-  status String?
+  status String? @default("ACTIVE")
 
   @@unique([email])
   @@map("user")
