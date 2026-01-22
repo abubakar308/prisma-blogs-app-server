@@ -52,17 +52,20 @@ catch(error: any){
 }
 
 
-const getPostById = async(req: Request, res: Response) =>{
-    try{
-        const result = postService.getPostById();
-        res.status(200).json(result);
-
-    } catch(error: any){
-     res.status(400).json({
-        error: "post creation faild",
-        details: error
-    })
-}
+const getPostById = async (req: Request, res: Response) => {
+    try {
+        const { postId } = req.params;
+        if (!postId) {
+            throw new Error("Post Id is required!")
+        }
+        const result = await postService.getPostById(postId as string);
+        res.status(200).json(result)
+    } catch (e) {
+        res.status(400).json({
+            error: "Post creation failed",
+            details: e
+        })
+    }
 }
 
 export const PostController = {
