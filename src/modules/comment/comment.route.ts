@@ -15,7 +15,7 @@ router.get(
     CommentController.getCommentsByAuthor
 )
 
-router.delete("/:commentId", CommentController.deleteComment)
+router.delete("/:commentId", auth(userRole.USER, userRole.ADMIN), CommentController.deleteComment)
 
 router.post("/", auth(userRole.USER, userRole.ADMIN), CommentController.createComment);
 

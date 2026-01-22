@@ -65,7 +65,6 @@ const getCommentsByAuthor = async (authorId: string) => {
 // tar nijar comment kina ata check korta hobe
 const deleteComment = async (commentId: string, authorId: string) => {
 
-    console.log(commentId, authorId);
     const commentData = await prisma.comment.findFirst({
         where: {
             id: commentId,
@@ -113,7 +112,9 @@ const updateComment = async (commentId: string, data: { content?: string, status
     })
 }
 
+
 const moderateComment = async (id: string, data: { status: CommentStatus }) => {
+    console.log(id, data);
     const commentData = await prisma.comment.findUniqueOrThrow({
         where: {
             id
